@@ -1,0 +1,54 @@
+<div class="form-container">
+  <h2>Inscription - Reactive Forms</h2>
+
+  <form [formGroup]="regForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nom complet *</mat-label>
+      <input matInput formControlName="fullname" placeholder="Brad Pitt" />
+      <mat-error *ngIf="isInvalid('fullname')">
+        <span *ngIf="hasError('fullname','required')">Le nom est obligatoire.</span>
+        <span *ngIf="hasError('fullname','minlength')">Minimum 3 caractères.</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Âge *</mat-label>
+      <input matInput type="number" formControlName="age" placeholder="40" />
+      <mat-error *ngIf="isInvalid('age')">
+        <span *ngIf="hasError('age','required')">L'âge est obligatoire.</span>
+        <span *ngIf="hasError('age','min')">Vous devez avoir au moins 18 ans.</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Pays *</mat-label>
+      <mat-select formControlName="country">
+        <mat-option *ngFor="let c of countries" [value]="c">{{ c }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="isInvalid('country')">Le pays est obligatoire.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email *</mat-label>
+      <input matInput type="email" formControlName="email"
+             placeholder="brad.pitt@gmail.com" />
+      <mat-error *ngIf="isInvalid('email')">
+        <span *ngIf="hasError('email','required')">L'email est obligatoire.</span>
+        <span *ngIf="hasError('email','email')">Format d'email invalide.</span>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit"
+              [disabled]="regForm.invalid">
+        S'inscrire
+      </button>
+    </div>
+  </form>
+
+  <div class="success" *ngIf="submitted && submittedData">
+    <p><strong>Inscription réussie !</strong></p>
+    <pre>{{ submittedData | json }}</pre>
+  </div>
+</div>

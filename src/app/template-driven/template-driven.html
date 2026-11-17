@@ -1,0 +1,67 @@
+<div class="form-container">
+  <h2>Inscription - Template Driven</h2>
+
+  <form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)" novalidate>
+
+    <!-- Nom complet -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nom complet *</mat-label>
+      <input matInput name="fullname" [(ngModel)]="user.fullname"
+             #fullname="ngModel" required minlength="3"
+             placeholder="Brad Pitt" />
+      <mat-error *ngIf="fullname.invalid && fullname.touched">
+        <span *ngIf="fullname.errors?.['required']">Le nom est obligatoire.</span>
+        <span *ngIf="fullname.errors?.['minlength']">
+          Minimum 3 caractères (actuellement {{ fullname.errors?.['minlength'].actualLength }}).
+        </span>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Âge -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Âge *</mat-label>
+      <input matInput type="number" name="age" [(ngModel)]="user.age"
+             #age="ngModel" required min="18" placeholder="40" />
+      <mat-error *ngIf="age.invalid && age.touched">
+        <span *ngIf="age.errors?.['required']">L'âge est obligatoire.</span>
+        <span *ngIf="age.errors?.['min']">Vous devez avoir au moins 18 ans.</span>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Pays -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Pays *</mat-label>
+      <mat-select name="country" [(ngModel)]="user.country"
+                  #country="ngModel" required>
+        <mat-option *ngFor="let c of countries" [value]="c">{{ c }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="country.invalid && country.touched">
+        Le pays est obligatoire.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email *</mat-label>
+      <input matInput type="email" name="email" [(ngModel)]="user.email"
+             #email="ngModel" required email
+             placeholder="brad.pitt@gmail.com" />
+      <mat-error *ngIf="email.invalid && email.touched">
+        <span *ngIf="email.errors?.['required']">L'email est obligatoire.</span>
+        <span *ngIf="email.errors?.['email']">Format d'email invalide.</span>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit"
+              [disabled]="regForm.invalid">
+        S'inscrire
+      </button>
+    </div>
+  </form>
+
+  <div class="success" *ngIf="submitted && submittedData">
+    <p><strong>Inscription réussie !</strong></p>
+    <pre>{{ submittedData | json }}</pre>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+.form-container {
+  max-width: 480px;
+  margin: 24px auto;
+  padding: 24px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+}
+.full-width { width: 100%; }
+.actions {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+.success {
+  background: #2ecc71;
+  color: #fff;
+  padding: 16px;
+  border-radius: 6px;
+  margin-top: 16px;
+  pre {
+    background: rgba(0,0,0,.08);
+    padding: 8px;
+    border-radius: 4px;
+    color: #fff;
+  }
+}

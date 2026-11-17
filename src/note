@@ -1,0 +1,13 @@
+1. Où est écrite la logique du formulaire ?
+- Template-Driven : la logique est écrite dans le template HTML
+- Reactive : la logique est écrite dans le composant TypeScript 
+
+2. La gestion des erreurs : 
+- Template-Driven : pour afficher les erreurs, on utilise les directives ngModel et ngModelGroup
+- Reactive : pour afficher les erreurs, on utilise les méthodes du FormControl et du FormGroup
+
+3. la communication entre les donnees : 
+-Template-Driven : Les données sont liées à la volée. Quand tu tapes "Brad", la variable user.fullname se met à jour instantanément.
+-Reactive Forms : Les données sont stockées dans l'objet regForm. Pour les récupérer, tu fais this.regForm.value.
+
+Alors template-driven est plus simple à utiliser pour des formulaires simples, mais reactive forms est plus puissant et flexible pour des formulaires complexes.
